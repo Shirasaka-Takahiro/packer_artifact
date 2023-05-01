@@ -1,0 +1,37 @@
+{
+    "variables": {
+        "aws_access_key": "",
+        "aws_secret_key": "",
+        "project": "example",
+        "env": "dev",
+        "region": "ap-northeast-1",
+        "source_ami": "ami-0df2ca8a354185e1e",
+        "instance_type": "t2.micro",
+        "ssh_username": "ec2-user"
+    },
+
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "access_key": "{{user `aws_access_key`}}",
+            "secret_key": "{{user `aws_secret_key`}}",
+            "region": "{{user `region`}}",
+            "source_ami": "{{user `source_ami`}}",
+            "instance_type": "{{user `instance_type`}}",
+            "ssh_username": "{{user `ssh_username`}}",
+            "ami_name": "{{user `project`}}-{{user `env`}}-ami01",
+            "tags": {
+                "Name": "{{user `project`}}-{{user `env`}}-ami01"
+            }
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum update -y"
+            ]
+        }
+    ]
+}

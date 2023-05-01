@@ -1,0 +1,23 @@
+{
+    "builders": [
+        {
+            "type": "amazon-ebs",
+            "region": "ap-northeast-1",
+            "source_ami": "ami-0df2ca8a354185e1e",
+            "instance_type": "t2.micro",
+            "ssh_username": "ec2-user",
+            "ami_name": "example-ami"
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum update -y",
+                "sudo yum install httpd -y",
+                "sudo systemctl start httpd && sudo systemctl enable httpd"
+            ]
+        }
+    ]
+}
