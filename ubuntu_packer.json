@@ -1,0 +1,23 @@
+{
+    "builders": [
+      {
+        "type": "lxd",
+        "image": "ubuntu/22.10",
+        "name": "my-container",
+        "profile": "default",
+        "launch_config": {
+          "limits.memory": "2GB"
+        }
+      }
+    ],
+  
+    "provisioners": [
+      {
+        "type": "shell",
+        "inline": [
+          "echo 'Hello, world!'"
+        ]
+      }
+    ]
+  }
+  

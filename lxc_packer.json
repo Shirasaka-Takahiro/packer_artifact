@@ -1,0 +1,27 @@
+{
+    "builders": [
+        {
+            "type": "lxd",
+            "name": "test-almalinux",
+            "image": "dfb400bad2e0",
+            "container_name": "packer-test-container",
+            "profile": "default",
+            "launch_config": {
+                "limits.memory": "2GB"
+            },
+            "publish_properties": {
+                "description": "Alma Linux 8"
+              }
+        }
+    ],
+
+    "provisioners": [
+        {
+            "type": "shell",
+            "inline": [
+                "sudo yum update -y",
+                "sudo yum install httpd -y"
+            ]
+        }
+    ]
+}
